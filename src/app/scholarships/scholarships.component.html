@@ -1,0 +1,30 @@
+<div class="scholarships-container">
+  <div class="page-header">
+    <h1>Scholarships</h1>
+    <p>Discover scholarship opportunities specifically for HBCU students</p>
+  </div>
+
+  <div class="search-section">
+    <input type="text" placeholder="Search scholarships..." class="search-input">
+    <button class="search-button">Search</button>
+  </div>
+
+  <div class="scholarships-list">
+    <div class="scholarship-card" *ngFor="let scholarship of scholarships">
+      <div class="card-header">
+        <h2>{{ scholarship.title }}</h2>
+        <span class="amount">{{ scholarship.amount }}</span>
+      </div>
+      <div class="card-body">
+        <p>{{ scholarship.description }}</p>
+        <div class="deadline">
+          <strong>Deadline:</strong> {{ scholarship.deadline }}
+        </div>
+      </div>
+      <div class="card-footer">
+        <button class="apply-button">Apply Now</button>
+        <button class="save-button">Save</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,34 @@
+<div class="hero-section">
+  <div class="hero-content">
+    <h1>Welcome to HBCU HUB</h1>
+    <p>Your gateway to scholarships, internships, and resources for HBCU students</p>
+    <div class="hero-buttons">
+      <a [routerLink]="['/scholarships']" class="hero-button primary">Find Scholarships</a>
+      <a [routerLink]="['/internships']" class="hero-button secondary">Browse Internships</a>
+    </div>
+  </div>
+</div>
+
+<div class="featured-section">
+  <h2>Featured Resources</h2>
+  <div class="card-container">
+    <div class="card" *ngFor="let item of featured">
+      <div class="card-image">
+        <img [src]="item.image" [alt]="item.title" onError="this.src='assets/placeholder.svg'">
+      </div>
+      <div class="card-content">
+        <h3>{{ item.title }}</h3>
+        <p>{{ item.description }}</p>
+        <a [routerLink]="[item.link]" class="card-link">Learn More</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="about-section">
+  <div class="about-content">
+    <h2>About HBCU HUB</h2>
+    <p>HBCU HUB is a centralized platform designed to help students from Historically Black Colleges and Universities access opportunities, resources, and a supportive community. Our mission is to connect HBCU students with scholarships, internships, career development, and networking opportunities to help them succeed.</p>
+    <a [routerLink]="['/about']" class="about-link">Learn More About Us</a>
+  </div>
+</div>

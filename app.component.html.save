@@ -1,7 +1,7 @@
 <header class="container">
   <div class="navbar">
     <div class="logo-container">
-      <img src="assets/hbcu-logo.svg" alt="HBCU HUB Logo" width="40" height="40">
+      <img src="assets/hbcu-logo.png" alt="HBCU HUB Logo" width="40" height="40">
       <a [routerLink]="['/']" class="brand">HBCU HUB</a>
     </div>
     <button class="menu-toggle" (click)="toggleMenu()">≡</button>
@@ -22,10 +22,5 @@
 <main>
   <router-outlet></router-outlet>
 </main>
-
-
-
-
-
 
 
