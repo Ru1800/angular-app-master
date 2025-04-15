@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Router, NavigationEnd, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { AuthService } from './auth.service'; // adjust path if needed
 
 @Component({
   selector: 'app-root',
@@ -12,8 +13,22 @@ import { CommonModule } from '@angular/common';
 export class AppComponent {
   title = 'HBCU HUB';
   menuActive = false;
-  isAuthenticated = false;
-  currentUser: any = null;
+  showHeader = true;
+  isLoggedIn: boolean = false;
+
+  constructor(private router: Router, private auth: AuthService) {
+    // Update login status
+    this.auth.isLoggedIn$.subscribe((status: boolean) => {
+      this.isLoggedIn = status;
+    });
+
+    // Always show header regardless of login/signup page
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        this.showHeader = true; // 👈 Always show the nav/header now
+      }
+    });
+  }
 
   toggleMenu() {
     this.menuActive = !this.menuActive;
@@ -24,7 +39,8 @@ export class AppComponent {
   }
 
   logout() {
-    // Placeholder for logout functionality
-    console.log('Logout clicked');
+    localStorage.removeItem('isLoggedIn');
+    this.auth.logout?.(); // Call logout if defined
+    this.router.navigate(['/login']);
   }
 }

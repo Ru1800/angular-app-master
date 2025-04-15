@@ -1,5 +1,11 @@
+// auth.guard.ts
 import { Injectable } from '@angular/core';
-import { CanActivate, Router, UrlTree } from '@angular/router';
+import {
+  CanActivate,
+  Router,
+  ActivatedRouteSnapshot,
+  RouterStateSnapshot
+} from '@angular/router';
 import { Observable } from 'rxjs';
 import { map, take } from 'rxjs/operators';
 import { AuthService } from './auth.service';
@@ -10,14 +16,21 @@ import { AuthService } from './auth.service';
 export class AuthGuard implements CanActivate {
   constructor(private authService: AuthService, private router: Router) {}
 
-  canActivate(): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    return this.authService.isAuthenticated$.pipe(
-      take(1),
-      map(isAuthenticated => {
-        if (isAuthenticated) {
+  canActivate(
+    next: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot
+  ): Observable<boolean> {
+    return this.authService.isLoggedIn$.pipe(
+      take(1), // ensures we only get one emission
+      map(isLoggedIn => {
+        if (isLoggedIn) {
           return true;
+        } else {
+          this.router.navigate(['/login'], {
+            queryParams: { returnUrl: state.url }
+          });
+          return false;
         }
-        return this.router.createUrlTree(['/login']);
       })
     );
   }
