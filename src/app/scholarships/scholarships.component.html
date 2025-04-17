@@ -5,26 +5,51 @@
   </div>
 
   <div class="search-section">
-    <input type="text" placeholder="Search scholarships..." class="search-input" />
-    <button class="search-button">Search</button>
+    <input
+      type="text"
+      [(ngModel)]="searchTerm"
+      placeholder="Search scholarships..."
+      class="search-input"
+    />
+    <button class="search-button" (click)="onSearch()">Search</button>
   </div>
 
   <div class="scholarships-list">
-    <div class="scholarship-card" *ngFor="let scholarship of scholarships">
+    <div class="scholarship-card" *ngFor="let scholarship of filteredScholarships">
       <div class="card-header">
-        <h2>{{ scholarship.title }}</h2>
-        <span class="amount">{{ scholarship.amount }}</span>
+        <h2>{{ scholarship.Name }}</h2>
+        <span class="amount">${{ scholarship.Amount }}</span>
       </div>
+
       <div class="card-body">
-        <p>{{ scholarship.description }}</p>
+        <p>{{ scholarship.Description }}</p>
         <div class="deadline">
-          <strong>Deadline:</strong> {{ scholarship.deadline }}
+          <strong>Deadline:</strong> {{ scholarship.ApplicationDeadline | date:'mediumDate' }}
         </div>
       </div>
+
       <div class="card-footer">
-        <button class="apply-button" disabled title="Login required to apply">Apply Now</button>
-        <button class="save-button" disabled title="Login required to save">Save</button>
+        <button
+          class="apply-button"
+          [disabled]="!isLoggedIn"
+          [title]="isLoggedIn ? 'Apply for this scholarship' : 'Login required to apply'"
+          (click)="applyToScholarship(scholarship)"
+        >
+          Apply Now
+        </button>
+        <button
+          class="save-button"
+          [disabled]="!isLoggedIn"
+          [title]="isLoggedIn ? 'Save this scholarship' : 'Login required to save'"
+          (click)="saveScholarship(scholarship)"
+        >
+          Save
+        </button>
       </div>
     </div>
   </div>
 </div>
+
+
+
+

@@ -1,1 +1,34 @@
-<p>internships works!</p>
+<div class="scholarships-container">
+    <div class="page-header">
+      <h1>Internships</h1>
+      <p>Explore internship opportunities tailored for HBCU students</p>
+    </div>
+  
+    <div class="search-section">
+      <input
+        type="text"
+        class="search-input"
+        [(ngModel)]="searchTerm"
+        placeholder="Search internships..."
+      />
+      <button class="search-button" (click)="onSearch()">Search</button>
+    </div>
+  
+    <div class="scholarships-list">
+      <div class="scholarship-card" *ngFor="let internship of filteredInternships">
+        <div class="card-header">
+          <h2>{{ internship.Title }}</h2>
+          <div class="amount">{{ internship.Company }}</div>
+        </div>
+        <div class="card-body">
+          <p>{{ internship.Description }}</p>
+          <div class="deadline"><strong>Deadline:</strong> {{ internship.Deadline | date }}</div>
+        </div>
+        <div class="card-footer">
+          <button class="apply-button">Apply Now</button>
+          <button class="save-button">Save</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  

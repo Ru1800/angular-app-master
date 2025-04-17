@@ -1,0 +1,48 @@
+.about-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    font-family: Arial, sans-serif;
+    color: #333;
+  }
+  
+  .about-container h1 {
+    font-size: 2.5rem;
+    color: #1a237e;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .about-container section {
+    margin-top: 30px;
+  }
+  
+  .about-container h2 {
+    font-size: 1.6rem;
+    color: #1a237e;
+    margin-bottom: 10px;
+  }
+  
+  .about-container p, .about-container li {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+  
+  .about-container ul {
+    padding-left: 20px;
+  }
+  
+  blockquote {
+    margin: 20px 0;
+    border-left: 4px solid #1a237e;
+    padding-left: 15px;
+    font-style: italic;
+    color: #555;
+  }
+  
+  details summary {
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+  
